@@ -3,10 +3,12 @@
   .tab{
     cursor: pointer;
     margin-right: 20px;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
   }
   .tab__selected{
-    border-bottom: 2px solid;
-    border-color: rgb(118, 120, 221);
-    padding-bottom: 4px;
+    color: var(--primary-color);
+    background-color: white;
   }
 }

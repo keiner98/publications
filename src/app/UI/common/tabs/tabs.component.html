@@ -3,12 +3,11 @@
 		class="tab"
 		*ngFor="let tabs of tabs"
 		(click)="selectionContent(tabs?.value || '1')"
+		[ngClass]="{
+			tab__selected: view === tabs?.value
+		}"
 	>
-		<span
-			[ngClass]="{
-				'tab__selected': view === tabs?.value
-			}"
-		>
+		<span>
 			{{ tabs?.label }}
 		</span>
 	</div>

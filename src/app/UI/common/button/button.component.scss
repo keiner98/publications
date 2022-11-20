@@ -14,10 +14,11 @@
 		background-color: var(--primary-color);
 
 		color: white;
-
-		&:hover {
-			background-color:var(--tertiary-color);
-		}
+    &-hover{
+      &:hover {
+        background-color:var(--tertiary-color);
+      }
+    }
 
 
 		&:disabled {

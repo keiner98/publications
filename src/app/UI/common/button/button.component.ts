@@ -14,6 +14,7 @@ export class ButtonComponent {
 	@Input() type: ButtonTypes = "button";
 	@Input() disabled: boolean = false;
 	@Input() height: string = "35px";
+  @Input() hoover: boolean = true;
 
 	constructor() {}
 
@@ -23,6 +24,9 @@ export class ButtonComponent {
 		if (this.outline && this.variant !== "primary") {
 			classes.push("button--outline");
 		}
+    if(this.hoover){
+      classes.push("button-primary-hover");
+    }
 
 		if (this.disabled) {
 			classes.push("button--disabled");

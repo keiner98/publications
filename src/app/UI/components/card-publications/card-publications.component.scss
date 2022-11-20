@@ -1,0 +1,37 @@
+.content {
+	background-color: #ececec;
+	height: calc(100vh - 65px);
+	padding: 40px;
+	width: 100%;
+	overflow-y: auto;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+}
+
+.card-publications {
+	width: 100%;
+	height: 100%;
+	.image {
+		height: 140px;
+		width: 100%;
+		object-fit: fill;
+	}
+	.card-content {
+		padding: 8px 12px;
+		.title {
+			width: 220px;
+		}
+	}
+	.footer {
+		padding: 0px 12px;
+	}
+}
+
+::ng-deep .p-chip {
+	background-color: var(--primary-color);
+	.p-chip-text {
+		font-size: 10px;
+    color: var(--secundary-color);
+	}
+}

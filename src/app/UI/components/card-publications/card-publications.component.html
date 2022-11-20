@@ -1,0 +1,47 @@
+<div class="content">
+	<app-paper
+		round="2"
+		outlineWidth="1"
+		outline="solid"
+		width="250"
+		height="330"
+		class="h-[calc(330px)]"
+		[center]="true"
+		[activeHover]="true"
+	>
+		<div class="tournament-card__center">
+			<div class="add w-full flex items-center justify-center pb-3">
+				<mat-icon class="text-4xl !w-9 !h-9 text-secondary-color">add</mat-icon>
+			</div>
+			<app-button [height]="'40px'" [hoover]="false" (click)="openModalNewPublication()">
+				<span> New Publication </span>
+			</app-button>
+		</div>
+	</app-paper>
+	<app-paper
+		round="2"
+		outlineWidth="1"
+		outline="solid"
+		width="250"
+		height="330"
+		class="h-[calc(330px)]"
+		[center]="true"
+		[activeHover]="true"
+		*ngFor="let publicationItem of publication"
+	>
+		<div class="card-publications">
+			<img [src]="publicationItem.publications[0].url" imgNotFound class="image" alt="" />
+			<div class="card-content border-t border-t-complementary-color-a">
+        <div class="title ">
+          <p class="truncate font-lato text-xl" [title]="publicationItem.title">{{ publicationItem.title }}</p>
+        </div>
+        <p class="text h-[calc(90px)] overflow-auto !m-0" [title]="publicationItem.text"> {{publicationItem.text}} </p>
+      </div>
+			<div class="footer">
+        <div class="chips w-[calc(220px)] flex overflow-x-auto">
+          <p-chip  *ngFor="let tag of publicationItem.tags" [icon]="'pi pi-tag'" class="mr-2" [title]="tag" [label]="tag"></p-chip>
+        </div>
+      </div>
+		</div>
+	</app-paper>
+</div>

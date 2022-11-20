@@ -12,12 +12,15 @@ import { ModalPublicationComponent } from '../../components/modal-publication/mo
 })
 export class PublicationComponent implements OnInit {
 	tabs: Tabs[] = [
-		{ label: 'Normal', value: '1' },
-		{ label: 'Slideshow', value: '2' },
+		{ label: 'All Publications', value: '1' },
+		{ label: 'Normal', value: '2' },
+		{ label: 'Slideshow', value: '3' },
 	];
 	viewSelect = '1';
 	publicationsNormal: Publications[] = [];
 	publicationsSlideshow: Publications[] = [];
+	publications: Publications[] = [];
+
 	constructor(public dialog: MatDialog, private publicationsService: PublicationsService) {}
 
 	ngOnInit(): void {
@@ -26,11 +29,15 @@ export class PublicationComponent implements OnInit {
 
 	tabSelect(event: any) {
 		this.viewSelect = event;
+		console.log(this.viewSelect);
 	}
 
 	getPublications() {
-		this.publicationsService.getPublications().subscribe((data) => {
-			data.data.forEach((publication) => {
+		this.publicationsService.getPublications().subscribe(({ data }) => {
+			this.publications = data;
+			this.publicationsNormal = [];
+			this.publicationsSlideshow = [];
+			data.forEach((publication) => {
 				if (publication.type === 'Normal') {
 					this.publicationsNormal.push(publication);
 				} else {
@@ -40,17 +47,20 @@ export class PublicationComponent implements OnInit {
 		});
 	}
 
-	openModalNewPublication() {
+	openModal(e: any) {
 		const dialogRef = this.dialog.open(ModalPublicationComponent, {
 			height: '550px',
 			width: '700px',
 			disableClose: false,
 		});
 		dialogRef.afterClosed().subscribe((data: Publications) => {
-			if (data?.type === 'Normal') {
-				this.publicationsNormal = [data, ...this.publicationsNormal];
-			} else {
-				this.publicationsSlideshow = [data, ...this.publicationsSlideshow];
+			if (data) {
+				this.publications = [data, ...this.publications];
+				if (data?.type === 'Normal') {
+					this.publicationsNormal = [data, ...this.publicationsNormal];
+				} else {
+					this.publicationsSlideshow = [data, ...this.publicationsSlideshow];
+				}
 			}
 		});
 	}

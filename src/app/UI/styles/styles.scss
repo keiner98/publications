@@ -40,3 +40,11 @@
 		border: 1px solid var(--primary-color);
 	}
 }
+
+*::-webkit-scrollbar {
+	height: 3px !important;
+  width: 3px !important;
+}
+*::-webkit-scrollbar-thumb {
+	background-color: #c2e9e7;
+}

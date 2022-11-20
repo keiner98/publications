@@ -12,6 +12,7 @@
 .toolbar{
   display: flex;
   justify-content: space-between;
+  background-color: var(--primary-color);
 }
 
 
@@ -32,7 +33,3 @@
   }
 }
 
-
-.content-tab{
-  height: calc(100vh - 140px);
-}
