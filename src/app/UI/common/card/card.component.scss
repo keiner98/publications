@@ -1,0 +1,16 @@
+.card {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+
+	&__header {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__content {
+		word-break: break-word;
+    position: relative;
+	}
+}

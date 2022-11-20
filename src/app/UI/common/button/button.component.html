@@ -1,0 +1,7 @@
+<button [ngClass]="classes()" [ngStyle]="{ height }" [disabled]="disabled" [type]="type">
+	<mat-icon *ngIf="!iconUrl && icon">
+		{{ icon }}
+  </mat-icon>
+	<img *ngIf="iconUrl" [src]="iconUrl" width="18px" />
+	<ng-content></ng-content>
+</button>

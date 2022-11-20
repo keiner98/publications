@@ -1,0 +1,15 @@
+<div class="tabs">
+	<div
+		class="tab"
+		*ngFor="let tabs of tabs"
+		(click)="selectionContent(tabs?.value || '1')"
+	>
+		<span
+			[ngClass]="{
+				'tab__selected': view === tabs?.value
+			}"
+		>
+			{{ tabs?.label }}
+		</span>
+	</div>
+</div>

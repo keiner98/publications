@@ -1,1 +1,64 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$Post_Match-primary: mat.define-palette(mat.$indigo-palette);
+$Post_Match-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$Post_Match-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$Post_Match-theme: mat.define-light-theme((
+  color: (
+    primary: $Post_Match-primary,
+    accent: $Post_Match-accent,
+    warn: $Post_Match-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($Post_Match-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0 }
+@import './tailwind.css';
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+@import './app/UI/styles/styles.scss';
+:root {
+	--primary-color: #00ABB3;
+	--secondary-color: #3C4048;
+	--tertiary-color: #B2B2B2;
+	--complementary-color-a: #B2B2B2;
+	--complementary-color-b: #EAEAEA;
+	--complementary-color-c: #8FD4DB;
+	--status-color-active: #e0fad9;
+	--status-color-inactive: #ffcbbb;
+	--status-color-review: #caf8ff;
+	--status-color-pending: #fef7b6;
+	--status-color-occult: #eaeaea;
+	--neutral-color-a: #171717;
+	--neutral-color-b: #5c5959;
+	--neutral-color-c: #e7e7e7;
+	--neutral-color-d: #e5e5e5;
+	--neutral-color-e: #a5a5a5;
+	--neutral-color-f: #adadad;
+	--neutral-color-g: #d8d8d8;
+	--neutral-color-h: #f9f9f9;
+}

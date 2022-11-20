@@ -1,0 +1,16 @@
+<div class="publications">
+  <mat-toolbar  class="toolbar">
+    <span>Publications</span>
+    <app-button [height]="'40px'" [icon]="'add'" o (click)="openModalNewPublication()">
+      <span> New </span>
+    </app-button>
+  </mat-toolbar>
+  <div class="tabs">
+    <app-tabs [tabs]="tabs" (active)="tabSelect($event)"></app-tabs>
+  </div>
+
+  <div class="content-tab">
+    <app-normal *ngIf="viewSelect === '1'"></app-normal>
+    <app-slideshow *ngIf="viewSelect === '2'"></app-slideshow>
+  </div>
+</div>

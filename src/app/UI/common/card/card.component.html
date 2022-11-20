@@ -1,0 +1,21 @@
+<app-paper
+	outline="solid"
+	outlineWidth="1"
+	round="1"
+	width="235"
+  height="120"
+	padding="10px"
+  [selected]="selected"
+  [activeSelect]="activeSelect"
+  [center]="true"
+  [activeHover]="activeHover"
+>
+	<div class="card">
+		<div class="card__header">
+			<ng-content select="[card-header]"></ng-content>
+		</div>
+		<div class="card__content">
+			<ng-content select="[card-content]"></ng-content>
+		</div>
+	</div>
+</app-paper>

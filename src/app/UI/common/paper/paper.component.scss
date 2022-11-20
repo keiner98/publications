@@ -1,0 +1,59 @@
+.paper {
+  overflow: hidden;
+}
+
+.hover {
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    border-radius: 8px;
+    cursor: pointer;
+    transform: translateY(-0.5rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  }
+}
+
+.elevation {
+  @for $i from 1 through 24 {
+    &-#{$i} {
+      box-shadow: 0px #{$i}px #{$i * 2}px 0px rgba(0, 0, 0, 0.2),
+        0px #{$i}px #{$i * 3}px 0px rgba(0, 0, 0, 0.14),
+        0px #{$i}px #{$i * 1}px -#{$i}px rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+
+.active-select {
+  &:hover {
+    border-right: 2px solid black !important;
+  }
+
+  cursor: pointer;
+}
+
+.select-item {
+  border-right: 2px solid black !important;
+}
+
+.round {
+  @for $i from 1 through 12 {
+    &-#{$i} {
+      border-radius: #{$i * 4}px;
+    }
+  }
+
+  &-circle {
+    border-radius: 50%;
+  }
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 765px) {
+  .paper {
+    width: 100% !important;
+  }
+}

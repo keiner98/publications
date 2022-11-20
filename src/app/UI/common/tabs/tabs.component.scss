@@ -1,0 +1,12 @@
+.tabs{
+  display: flex;
+  .tab{
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  .tab__selected{
+    border-bottom: 2px solid;
+    border-color: rgb(118, 120, 221);
+    padding-bottom: 4px;
+  }
+}
