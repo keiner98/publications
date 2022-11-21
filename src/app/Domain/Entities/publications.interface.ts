@@ -7,6 +7,6 @@ export interface Publications {
 	title: string;
 	text: string;
 	tags: string[];
-	type: 'Normal' | 'slideshow';
+	type: 'Normal' | 'Slideshow';
 	publications: Publication[];
 }

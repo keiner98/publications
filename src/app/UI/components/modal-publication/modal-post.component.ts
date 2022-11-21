@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ToastAlert } from 'src/app/Infrastructure/hooks/toast.hook';
 import { PublicationsService } from 'src/app/Infrastructure/services/publications.service';
 import { Publications } from '../../../Domain/Entities/publications.interface';
 
@@ -16,7 +17,8 @@ export class ModalPublicationComponent implements OnInit {
 	constructor(
 		public dialogRef: MatDialogRef<ModalPublicationComponent>,
 		private fb: FormBuilder,
-		private publicationsService: PublicationsService
+		private publicationsService: PublicationsService,
+		private toast: ToastAlert
 	) {}
 
 	ngOnInit(): void {
@@ -29,6 +31,7 @@ export class ModalPublicationComponent implements OnInit {
 			publications: this.fb.array([]),
 		});
 	}
+
 	add() {
 		const formPublications = this.fb.group({
 			title: ['', [Validators.required]],
@@ -36,12 +39,17 @@ export class ModalPublicationComponent implements OnInit {
 		});
 		this.publications.push(formPublications);
 	}
+
 	remove(i: number) {
 		this.publications.removeAt(i);
 	}
 
 	get publications() {
 		return this.formPublication.controls['publications'] as FormArray;
+	}
+
+	get f() {
+		return this.formPublication.controls;
 	}
 
 	valueType() {
@@ -66,9 +74,13 @@ export class ModalPublicationComponent implements OnInit {
 			}
 			this.publicationsService.createPublication(publication).subscribe(
 				({ data }) => {
+					this.toast.toastSuccess('Create publication', 'Create publication was successful');
 					this.dialogRef.close(data);
 				},
-				(err) => console.log(err)
+				(err) => {
+					this.toast.toastFailure('Error', err.error || 'Internal server error.');
+					this.dialogRef.close();
+				}
 			);
 		}
 	}

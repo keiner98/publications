@@ -12,7 +12,7 @@
 			<div class="flex h-[calc(70%)] w-full">
 				<div class="texts w-full pr-3">
 					<div class="form-group">
-						<label for="title">Title  <span class="asteriks">*</span></label>
+						<label for="title">Title <span class="asteriks">*</span></label>
 						<input
 							type="text"
 							placeholder="Enter title"
@@ -20,6 +20,9 @@
 							class="input-app"
 							id="title"
 						/>
+						<div *ngIf="f.title.touched && f.title.invalid" class="alert-error">
+							<div *ngIf="f.title.errors?.required">Title is required</div>
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="text">Text <span class="asteriks">*</span></label>
@@ -28,8 +31,12 @@
 							class="input-app text-area"
 							placeholder="Enter text"
 							formControlName="text"
+							maxlength="100"
 							id="text"
 						></textarea>
+						<div *ngIf="f.text.touched && f.text.invalid" class="alert-error">
+							<div *ngIf="f.text.errors?.required">Text is required</div>
+						</div>
 					</div>
 				</div>
 				<div class="tags flex flex-col w-full pl-3">
@@ -38,9 +45,9 @@
 				</div>
 			</div>
 			<div class="flex flex-col h-full w-full">
-				<div class="type flex  w-full" [ngClass]="{'items-center': type !== 'Normal' }">
+				<div class="type flex w-full" [ngClass]="{ 'items-center': type !== 'Normal' }">
 					<div class="form-group">
-						<label for="title">Type  <span class="asteriks">*</span></label>
+						<label for="title">Type <span class="asteriks">*</span></label>
 						<p-dropdown
 							formControlName="type"
 							[options]="types"
@@ -67,6 +74,11 @@
 							class="input-app"
 							id="url"
 						/>
+            <div *ngIf="f.url.touched && f.url.invalid" class="alert-error">
+							<div *ngIf="f.url.errors?.required">
+								Url is required
+							</div>
+						</div>
 					</div>
 					<div class="add pl-3 -mt-1.5" *ngIf="type !== 'Normal'">
 						<app-button (click)="add()" [icon]="'add'"></app-button>
@@ -118,7 +130,7 @@
 	<div
 		class="footer w-full flex justify-end h-20 items-center pr-8 border-t border-t-complementary-color-a"
 	>
-		<app-button (click)="dialogRef.close()" class="pr-4">Cancel</app-button>
+		<app-button (click)="dialogRef.close()" [variant]="'secundary'" class="pr-4">Cancel</app-button>
 		<app-button [disabled]="formPublication.invalid" (click)="save()">Save</app-button>
 	</div>
 </div>

@@ -27,7 +27,7 @@ export class PublicationComponent implements OnInit {
 		this.getPublications();
 	}
 
-	tabSelect(event: any) {
+	tabSelect(event: string) {
 		this.viewSelect = event;
 	}
 
@@ -46,7 +46,7 @@ export class PublicationComponent implements OnInit {
 		});
 	}
 
-	openModal(e: any) {
+	openModal(e: boolean) {
 		const dialogRef = this.dialog.open(ModalPublicationComponent, {
 			height: '650px',
 			width: '700px',

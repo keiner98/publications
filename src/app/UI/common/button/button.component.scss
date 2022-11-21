@@ -27,45 +27,45 @@
 		}
 	}
 
-	// &-secondary {
-	// 	background-color: getPalette($theme, "commons", "white");
-	// 	color: getPalette($theme, "commons", "black");
+	&-secondary {
+		background-color:white;
+		color: black;
 
-	// 	span {
-	// 		color: getPalette($theme, "foundations", "primary");
-	// 	}
+		span {
+			color: var(--primary-color);
+		}
 
-	// 	&:hover {
-	// 		background-color: getPalette($theme, "foundations", "primary");
-	// 		color: getPalette($theme, "commons", "white");
+		&:hover {
+			background-color: var(--primary-color);
+			color:white;
 
-	// 		span {
-	// 			color: getPalette($theme, "commons", "white");
-	// 		}
-	// 	}
+			span {
+				color: white;
+			}
+		}
 
-	// 	&:active {
-	// 		background-color: getPalette($theme, "complementary", "primaryB");
-	// 		color: getPalette($theme, "commons", "black");
+		&:active {
+			background-color: var(--primary-color);
+			color:black;
 
-	// 		span {
-	// 			color: getPalette($theme, "commons", "white");
-	// 		}
-	// 	}
+			span {
+				color: white;
+			}
+		}
 
-	// 	&:disabled {
-	// 		background-color: getPalette($theme, "neutral", "greyD");
-	// 		pointer-events: none;
+		&:disabled {
+			background-color: var(--complementary-color-a);
+			pointer-events: none;
 
-	// 		color: getPalette($theme, "neutral", "greyB");
-	// 	}
-	// }
+			color: var(--tertiary-color);
+		}
+	}
 
-	// &--outline {
-	// 	border: 1px solid getPalette($theme, "neutral", "greyD");
+	&--outline {
+		border: 1px solid  var(--tertiary-color);
 
-	// 	&:disabled {
-	// 		border-color: getPalette($theme, "neutral", "greyB");
-	// 	}
-	// }
+		&:disabled {
+			border-color:var(--tertiary-color);
+		}
+	}
 }

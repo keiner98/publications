@@ -19,7 +19,7 @@ export class CardPublicationsComponent implements OnInit {
 	}
 	viewPublication(publicationItem: Publications) {
     const dialogRef = this.dialog.open(ViewPublicationComponent, {
-			height: '850px',
+			height: '750px',
 			width: '700px',
       data:publicationItem,
 			disableClose: false,
