@@ -30,8 +30,8 @@
 
 ::ng-deep .p-chip {
 	background-color: var(--primary-color);
-	.p-chip-text {
+	.p-chip-icon,.p-chip-text {
 		font-size: 10px;
-    color: var(--secundary-color);
+    color: white;
 	}
 }

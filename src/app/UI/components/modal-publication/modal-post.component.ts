@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PublicationsService } from 'src/app/Infrastructure/services/publications.service';
 import { Publications } from '../../../Domain/Entities/publications.interface';
@@ -12,7 +12,7 @@ import { Publications } from '../../../Domain/Entities/publications.interface';
 export class ModalPublicationComponent implements OnInit {
 	types = ['Normal', 'Slideshow'];
 	formPublication!: FormGroup;
-	type = 'Slideshow';
+	type = 'Normal';
 	constructor(
 		public dialogRef: MatDialogRef<ModalPublicationComponent>,
 		private fb: FormBuilder,
@@ -24,17 +24,38 @@ export class ModalPublicationComponent implements OnInit {
 			title: ['', [Validators.required]],
 			text: ['', [Validators.required]],
 			tags: [''],
-			type: ['', [Validators.required]],
-			url: [''],
-
+			type: ['Normal', [Validators.required]],
+			url: ['', [Validators.required]],
+			publications: this.fb.array([]),
 		});
 	}
+	add() {
+		const formPublications = this.fb.group({
+			title: ['', [Validators.required]],
+			url: ['', [Validators.required]],
+		});
+		this.publications.push(formPublications);
+	}
+	remove(i: number) {
+		this.publications.removeAt(i);
+	}
 
-
+	get publications() {
+		return this.formPublication.controls['publications'] as FormArray;
+	}
 
 	valueType() {
 		this.type = this.type === 'Normal' ? 'Slideshow' : 'Normal';
+		if (this.type === 'Normal') {
+			this.publications.clear();
+			this.formPublication.controls['url'].enable();
+			this.formPublication.controls['url'].setValidators([Validators.required]);
+		} else {
+			this.formPublication.controls['url'].disable();
+		}
+		this.formPublication.controls['url'].updateValueAndValidity();
 	}
+
 	save() {
 		if (this.formPublication.valid) {
 			const publication: Publications = this.formPublication.value;
@@ -44,8 +65,8 @@ export class ModalPublicationComponent implements OnInit {
 				];
 			}
 			this.publicationsService.createPublication(publication).subscribe(
-				(data) => {
-					this.dialogRef.close(data.data);
+				({ data }) => {
+					this.dialogRef.close(data);
 				},
 				(err) => console.log(err)
 			);

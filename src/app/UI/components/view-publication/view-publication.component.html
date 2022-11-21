@@ -1,0 +1,66 @@
+<div class="view-publication w-full h-full">
+	<div class="title w-full flex justify-between items-center h-20 px-8">
+		<p class="font-lato text-2xl text-primary-color w-[calc(500px)] truncate">Publication</p>
+		<div class="close">
+			<mat-icon (click)="dialogRef.close()" class="cursor-pointer text-4xl">close</mat-icon>
+		</div>
+	</div>
+	<div class="content px-8 h-[calc(100vh-160px)]">
+		<div class="title w-full">
+			<span class="font-lato text-base text-primary-color"> Title</span>
+			<p class="font-lato text-2xl text-secondary-color w-[calc(500px)] truncate">
+				{{ publication.title }}
+			</p>
+		</div>
+		<div class="text w-full">
+			<span class="font-lato text-base text-primary-color">Text</span>
+			<p class="font-lato text-2xl text-secondary-color">{{ publication.text }}</p>
+		</div>
+		<div class="tags w-full">
+			<span class="font-lato text-base text-primary-color">Tags</span>
+			<div class="chips pt-1 w-[calc(635px)] flex overflow-x-auto">
+				<p-chip
+					*ngFor="let tag of publication.tags"
+					[icon]="'pi pi-tag'"
+					class="mr-2"
+					[title]="tag"
+					[label]="tag"
+				></p-chip>
+			</div>
+		</div>
+		<div class="text w-full">
+			<span class="font-lato text-base text-primary-color">Type</span>
+			<p class="font-lato text-2xl text-secondary-color">{{ publication.type }}</p>
+		</div>
+		<div class="post w-full">
+			<span class="font-lato text-base text-primary-color">Posts</span>
+			<div class="post w-full flex flex-row overflow-x-auto p-4 gap-2">
+				<div
+					class="post-content md:w-[calc(200px)]"
+					*ngFor="let itemPublication of publication.publications"
+				>
+					<app-paper
+						round="2"
+						outlineWidth="1"
+						outline="solid"
+						width="200"
+						height="160"
+						[center]="true"
+						class="tournament-card__paper"
+						[activeHover]="true"
+					>
+						<div class="w-full h-full flex flex-col">
+							<img imgNotFound [src]="itemPublication.url" class="h-32 object-contain" />
+
+              <div class="title w-full text-center">
+                <span class="font-lato text-base text-primary-color md:!w-[calc(200px)] w-full">{{
+                  itemPublication.title
+                }}</span>
+              </div>
+						</div>
+					</app-paper>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

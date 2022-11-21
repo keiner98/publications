@@ -44,7 +44,10 @@
 *::-webkit-scrollbar {
 	height: 3px !important;
   width: 3px !important;
+  opacity: 0.5;
 }
 *::-webkit-scrollbar-thumb {
-	background-color: #c2e9e7;
+	background-color: var(--neutral-color-f);
+  opacity: 0.5;
+
 }

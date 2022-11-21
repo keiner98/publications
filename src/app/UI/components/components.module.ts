@@ -10,9 +10,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardPublicationsComponent } from './card-publications/card-publications.component';
 import { ChipModule } from 'primeng/chip';
 import { DirectivesModule } from 'src/app/Infrastructure/directive/directives.module';
+import { ViewPublicationComponent } from './view-publication/view-publication.component';
+import {GalleriaModule} from 'primeng/galleria';
 
 @NgModule({
-	declarations: [ModalPublicationComponent, CardPublicationsComponent],
+	declarations: [ModalPublicationComponent, CardPublicationsComponent, ViewPublicationComponent],
 	imports: [
 		CommonModule,
 		CommonsModule,
@@ -23,7 +25,8 @@ import { DirectivesModule } from 'src/app/Infrastructure/directive/directives.mo
     FormsModule,
     DirectivesModule,
     ReactiveFormsModule,
-    DropdownModule
+    DropdownModule,
+    GalleriaModule
 	],
 	exports: [ModalPublicationComponent,CardPublicationsComponent],
 })

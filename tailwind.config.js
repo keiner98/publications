@@ -6,8 +6,8 @@ module.exports = {
 			lato: 'Lato',
 		},
 		colors: {
-			'primary-color': '#00ABB3',
-			'secondary-color': '#3C4048',
+			'primary-color': '#6F38C5',
+			'secondary-color': '#4B5D67',
 			'complementary-color-a': '#B2B2B2',
 			'complementary-color-b': '#EAEAEA',
 			'complementary-color-c': '#8FD4DB',

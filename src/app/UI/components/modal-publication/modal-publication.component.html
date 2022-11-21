@@ -7,21 +7,27 @@
 			<mat-icon (click)="dialogRef.close()" class="cursor-pointer text-4xl">close</mat-icon>
 		</div>
 	</div>
-	<div class="content h-[calc(100vh-572px)]">
+	<div class="content h-[calc(100vh-415px)]">
 		<form action="" [formGroup]="formPublication" class="pt-4 w-full h-full flex flex-col px-8">
-			<div class="flex h-full w-full">
+			<div class="flex h-[calc(70%)] w-full">
 				<div class="texts w-full pr-3">
 					<div class="form-group">
-						<label for="title">Title</label>
-						<input type="text" placeholder="Enter title"  formControlName="title" class="input-app" id="title" />
+						<label for="title">Title  <span class="asteriks">*</span></label>
+						<input
+							type="text"
+							placeholder="Enter title"
+							formControlName="title"
+							class="input-app"
+							id="title"
+						/>
 					</div>
 					<div class="form-group">
-						<label for="text">Text</label>
+						<label for="text">Text <span class="asteriks">*</span></label>
 						<textarea
 							type="text"
 							class="input-app text-area"
 							placeholder="Enter text"
-              formControlName="text"
+							formControlName="text"
 							id="text"
 						></textarea>
 					</div>
@@ -31,16 +37,16 @@
 					<p-chips formControlName="tags" placeholder="tags"></p-chips>
 				</div>
 			</div>
-			<div class="flex h-full w-full">
-				<div class="type flex w-full">
-					<div class="form-group pr-3">
-						<label for="title">Type</label>
+			<div class="flex flex-col h-full w-full">
+				<div class="type flex  w-full" [ngClass]="{'items-center': type !== 'Normal' }">
+					<div class="form-group">
+						<label for="title">Type  <span class="asteriks">*</span></label>
 						<p-dropdown
 							formControlName="type"
 							[options]="types"
-							class="w-full mb-2.5 mr-2"
-							[showClear]="true"
-              (onChange)="valueType()"
+							class="w-full mb-2.5"
+							[ngClass]="{ 'mr-2': type === 'Normal' }"
+							(onChange)="valueType()"
 							placeholder="Selected option"
 						>
 							<ng-template let-option pTemplate="item">
@@ -53,8 +59,57 @@
 						</p-dropdown>
 					</div>
 					<div class="form-group pl-3" *ngIf="type === 'Normal'">
-						<label for="url">Url</label>
-						<input type="text" formControlName="url" placeholder="Enter url" class="input-app" id="url" />
+						<label for="url">Url <span class="asteriks">*</span></label>
+						<input
+							type="text"
+							formControlName="url"
+							placeholder="Enter url"
+							class="input-app"
+							id="url"
+						/>
+					</div>
+					<div class="add pl-3 -mt-1.5" *ngIf="type !== 'Normal'">
+						<app-button (click)="add()" [icon]="'add'"></app-button>
+					</div>
+				</div>
+				<div
+					*ngIf="type !== 'Normal'"
+					class="publications h-[calc(180px)] flex flex-col overflow-y-auto"
+				>
+					<div
+						class="publication w-full flex items-center flex-col overflow-y-auto h-[calc(180px)]"
+						formArrayName="publications"
+					>
+						<ng-container
+							*ngFor="let publication of publications.controls; let i = index"
+							class="w-full flex flex-col"
+						>
+							<div class="forms w-full flex items-center" [formGroup]="publication">
+								<div class="form-group pr-3">
+									<label for="titlePublication">Title <span class="asteriks">*</span></label>
+									<input
+										type="text"
+										placeholder="Enter title"
+										[formControlName]="'title'"
+										class="input-app"
+										id="titlePublication"
+									/>
+								</div>
+								<div class="form-group pl-3">
+									<label for="url">Url <span class="asteriks">*</span></label>
+									<input
+										type="text"
+										placeholder="Enter title"
+										[formControlName]="'url'"
+										class="input-app"
+										id="url"
+									/>
+								</div>
+								<div class="add pl-3">
+									<app-button (click)="remove(i)" [icon]="'remove'"></app-button>
+								</div>
+							</div>
+						</ng-container>
 					</div>
 				</div>
 			</div>
@@ -64,6 +119,6 @@
 		class="footer w-full flex justify-end h-20 items-center pr-8 border-t border-t-complementary-color-a"
 	>
 		<app-button (click)="dialogRef.close()" class="pr-4">Cancel</app-button>
-		<app-button [disabled]="formPublication.invalid" (click)="save()" >Save</app-button>
+		<app-button [disabled]="formPublication.invalid" (click)="save()">Save</app-button>
 	</div>
 </div>
